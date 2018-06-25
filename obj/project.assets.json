@@ -12964,7 +12964,7 @@
   },
   "packageFolders": {
     "C:\\Users\\rkruse\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -12976,7 +12976,7 @@
       "outputPath": "C:\\Users\\rkruse\\Documents\\GitHub\\dnd-buddy-backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\rkruse\\AppData\\Roaming\\NuGet\\NuGet.Config",
