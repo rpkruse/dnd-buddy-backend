@@ -1,0 +1,11 @@
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\bin\Debug\netcoreapp2.0\dnd-buddy-backend.deps.json
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\bin\Debug\netcoreapp2.0\dnd-buddy-backend.runtimeconfig.json
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\bin\Debug\netcoreapp2.0\dnd-buddy-backend.runtimeconfig.dev.json
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\bin\Debug\netcoreapp2.0\dnd-buddy-backend.dll
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.csprojAssemblyReference.cache
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.csproj.CoreCompileInputs.cache
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.AssemblyInfoInputs.cache
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.AssemblyInfo.cs
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\bin\Debug\netcoreapp2.0\dnd-buddy-backend.pdb
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.dll
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.pdb
