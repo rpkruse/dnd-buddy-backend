@@ -26,16 +26,16 @@ namespace dnd_buddy_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DATABASE"); //DEV
-            //string connection = Environment.GetEnvironmentVariable("DATABASE"); //PROD
+            //string connection = Configuration.GetConnectionString("DATABASE"); //DEV
+            string connection = Environment.GetEnvironmentVariable("DATABASE"); //PROD
 
             services.AddDbContext<DataContext>(options => options.UseMySql(connection));
 
             var authSettings = Configuration.GetSection("AuthSettings");
             services.Configure<AuthSettings>(authSettings);
 
-            string secret = authSettings.Get<AuthSettings>().SECRET; //DEV
-            //string secret = Environment.GetEnvironmentVariable("SECRET"); //PROD
+            //string secret = authSettings.Get<AuthSettings>().SECRET; //DEV
+            string secret = Environment.GetEnvironmentVariable("SECRET"); //PROD
 
             var key = Encoding.UTF8.GetBytes(secret);
 
