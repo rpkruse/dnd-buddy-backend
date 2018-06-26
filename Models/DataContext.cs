@@ -32,6 +32,42 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("name")
                     .HasColumnType("varchar(45)");
 
+                entity.Property(e => e.Class)
+                    .HasColumnName("class")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Race)
+                    .HasColumnName("race")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Abil_Score_Str)
+                    .HasColumnName("abil_score_str")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abil_Score_Dex)
+                    .HasColumnName("abil_score_dex")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abil_Score_Con)
+                    .HasColumnName("abil_score_con")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abil_Score_Int)
+                    .HasColumnName("abil_score_int")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abil_Score_Wis)
+                    .HasColumnName("abil_score_wis")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Abil_Score_Cha)
+                    .HasColumnName("abil_score_cha")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Level)
+                    .HasColumnName("level")
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
                     .HasColumnType("int(11)");
@@ -42,6 +78,7 @@ namespace dnd_buddy_backend.Models
 
                 entity.HasOne(d => d.Game)
                     .WithMany(g => g.Character)
+                    .HasForeignKey(d => d.GameId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("f_gid");
 

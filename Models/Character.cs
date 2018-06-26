@@ -13,9 +13,22 @@ namespace dnd_buddy_backend.Models
         }
 
         public int CharacterId { get; set; }
+
         public string Name { get; set; }
+        public string Class { get; set; }
+        public string Race { get; set; }
+
+        public int Abil_Score_Str { get; set; }
+        public int Abil_Score_Dex { get; set; }
+        public int Abil_Score_Con { get; set; }
+        public int Abil_Score_Int { get; set; }
+        public int Abil_Score_Wis { get; set; }
+        public int Abil_Score_Cha { get; set; }
+
+        public int Level { get; set; }
 
         public int UserId { get; set; }
+
         public int GameId { get; set; }
 
         public virtual User User { get; set; }
