@@ -74,7 +74,41 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var games = await _context.Game.Where(m => m.UserId == userId).AsNoTracking().ToListAsync();
+            var games = new List<Game>();
+            var characters = await _context.Character.Where(m => m.UserId == userId).AsNoTracking().ToListAsync();
+            var gmGames = await _context.Game.Where(m => m.UserId == userId).AsNoTracking().ToListAsync();
+
+            foreach(Character c in characters)
+            {
+                var game = _context.Game.SingleOrDefault(x => x.GameId == c.GameId);
+                games.Add(game);
+            }
+
+            //var games = await _context.Game.Where(m => m.UserId == userId).AsNoTracking().ToListAsync();
+
+            if (games == null)
+            {
+                return NotFound();
+            }
+
+            foreach(Game g in gmGames)
+            {
+                games.Add(g);
+            }
+
+            return Ok(games);
+        }
+
+        //Get: api/Games/user/1
+        [HttpGet("open/{userId}")]
+        public async Task<IActionResult> GetGamesNotCurrentlyIn([FromRoute] int userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var games = await _context.Game.Where(m => m.UserId != userId).AsNoTracking().ToListAsync();
 
             if (games == null)
             {

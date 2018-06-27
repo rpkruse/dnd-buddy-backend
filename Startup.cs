@@ -11,6 +11,7 @@ using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using dnd_buddy_backend.Hubs;
 
 namespace dnd_buddy_backend
 {
@@ -91,10 +92,10 @@ namespace dnd_buddy_backend
 
             app.UseAuthentication();
 
-            /*app.UseSignalR(routes =>
+            app.UseSignalR(routes =>
             {
                 routes.MapHub<MessageHub>("/messagehub");
-            });*/
+            });
 
             app.UseMvc();
         }

@@ -105,10 +105,6 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("userId")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.GM)
-                    .HasColumnName("gm")
-                    .HasColumnType("bit(1)");
-
                 entity.HasOne(d => d.User)
                     .WithMany(g => g.Game)
                     .OnDelete(DeleteBehavior.Restrict)

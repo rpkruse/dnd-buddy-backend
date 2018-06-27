@@ -41,6 +41,7 @@ namespace dnd_buddy_backend.Controllers
                 return NotFound();
             }
 
+            user.Password = null;
             return Ok(user);
         }
 
