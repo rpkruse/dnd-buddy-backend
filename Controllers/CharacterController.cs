@@ -45,7 +45,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Characters/user/1
-        [HttpGet("user/{id}")]
+        [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUsersCharacter([FromRoute] int userId)
         {
             if (!ModelState.IsValid)
