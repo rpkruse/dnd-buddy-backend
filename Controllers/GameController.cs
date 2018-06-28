@@ -190,6 +190,21 @@ namespace dnd_buddy_backend.Controllers
             return Ok(game);
         }
 
+        //api/Games/check/<gamename>
+        [HttpGet("check/{gamename}")]
+        public async Task<IActionResult> CheckForGameName([FromRoute] string gamename)
+        {
+            Game _game = _context.Game.SingleOrDefault(x => x.Name == gamename);
+
+            if (_game != null) //If the game name is already taken we return an error
+            {
+                ModelState.AddModelError("Error", "Game name already taken");
+                return BadRequest(ModelState);
+            }
+
+            return Ok();
+        }
+
 
         private bool GameExists(int id)
         {
