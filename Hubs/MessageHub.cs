@@ -29,14 +29,19 @@ namespace dnd_buddy_backend.Hubs
         public async Task LeaveGroup(UserMessageData userMessageData)
         {
             await Groups.RemoveAsync(Context.ConnectionId, userMessageData.GroupName);
-            await Clients.Group(userMessageData.GroupName).SendAsync("sendDisconnectNoticeToGroup", userMessageData);
+            await Clients.OthersInGroup(userMessageData.GroupName).SendAsync("sendDisconnectNoticeToGroup", userMessageData);
             await Clients.Client(Context.ConnectionId).SendAsync("okToStopConnection");
         }
 
-        public async Task SetGroup(UserMessageData[] groupMembers, string groupName, string newMemberID)
+        public async Task SetGroup(OnlineUser[] groupMembers, string groupName, string newMemberID)
         {
             //await Clients.OthersInGroup(groupName).SendAsync("updateLobby", groupMembers);
             await Clients.Client(newMemberID).SendAsync("updateLobby", groupMembers);
+        }
+
+        public async Task SendRoll(RollMessageData rollMessageData)
+        {
+            await Clients.OthersInGroup(rollMessageData.GroupName).SendAsync("sendRollNoticeToGroup", rollMessageData);
         }
     }
 }

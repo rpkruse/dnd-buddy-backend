@@ -8,8 +8,9 @@ namespace dnd_buddy_backend.Models
     public class RollMessageData 
     {
         public string GroupName { get; set; }
-        public string ID { get; set; }
+        public int CharId { get; set; }
         public int Roll { get; set; }
+        public int NumDice { get; set; }
         public int MaxRoll { get; set; }
     }
 }
