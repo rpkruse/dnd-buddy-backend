@@ -68,6 +68,30 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("level")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Armor)
+                    .HasColumnName("armor")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Weapon)
+                    .HasColumnName("weapon")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Shield)
+                    .HasColumnName("shield")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Neck)
+                    .HasColumnName("neck")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Ring_1)
+                    .HasColumnName("ring_1")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Ring_2)
+                    .HasColumnName("ring_2")
+                    .HasColumnType("varchar(100)");
+
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
                     .HasColumnType("int(11)");

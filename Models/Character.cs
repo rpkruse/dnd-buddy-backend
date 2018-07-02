@@ -27,6 +27,13 @@ namespace dnd_buddy_backend.Models
 
         public int Level { get; set; }
 
+        public string Armor { get; set; }
+        public string Weapon { get; set; }
+        public string Shield { get; set; }
+        public string Neck { get; set; }
+        public string Ring_1 { get; set; }
+        public string Ring_2 { get; set; }
+
         public int UserId { get; set; }
 
         public int GameId { get; set; }
