@@ -43,5 +43,10 @@ namespace dnd_buddy_backend.Hubs
         {
             await Clients.OthersInGroup(rollMessageData.GroupName).SendAsync("sendRollNoticeToGroup", rollMessageData);
         }
+
+        public async Task SendItem(ItemMessageData itemMessageData)
+        {
+            await Clients.Client(itemMessageData.connectionId).SendAsync("getItem", itemMessageData);
+        }
     }
 }
