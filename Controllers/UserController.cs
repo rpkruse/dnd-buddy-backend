@@ -20,9 +20,10 @@ namespace dnd_buddy_backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> GetUser()
+        public async Task<IActionResult> GetUser()
         {
-            return _context.User;
+            return Unauthorized(); //Don't allow anyone to pull all of users
+            //return _context.User;
         }
 
         //GET: api/Users/1
