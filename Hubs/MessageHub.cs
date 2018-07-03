@@ -48,5 +48,10 @@ namespace dnd_buddy_backend.Hubs
         {
             await Clients.Client(itemMessageData.connectionId).SendAsync("getItem", itemMessageData);
         }
+
+        public async Task SendGridPlacement(GridMessageData gridMessageData)
+        {
+            await Clients.OthersInGroup(gridMessageData.GroupName).SendAsync("sendGridUpdateToGroup", gridMessageData);
+        }
     }
 }
