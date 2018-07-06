@@ -66,6 +66,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Games/user/1
+        /// <summary>
+        /// Games that the user is in or the DM of
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUsersGame([FromRoute] int userId)
         {
@@ -99,7 +104,12 @@ namespace dnd_buddy_backend.Controllers
             return Ok(games);
         }
 
-        //Get: api/Games/user/1
+        //Get: api/Games/open/1
+        /// <summary>
+        /// Games that the user can join (IE are not the DM for)
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet("open/{userId}")]
         public async Task<IActionResult> GetGamesNotCurrentlyIn([FromRoute] int userId)
         {
@@ -109,6 +119,25 @@ namespace dnd_buddy_backend.Controllers
             }
 
             var games = await _context.Game.Where(m => m.UserId != userId).AsNoTracking().ToListAsync();
+
+            if (games == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(games);
+        }
+
+        //Get: api/gm/
+        [HttpGet("gm/{userId}")]
+        public async Task<IActionResult> GetGMGames([FromRoute] int userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var games = await _context.Game.Where(m => m.UserId == userId).AsNoTracking().ToListAsync();
 
             if (games == null)
             {
