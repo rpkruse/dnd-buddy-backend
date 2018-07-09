@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using dnd_buddy_backend.Models;
+using System;
 
 namespace dnd_buddy_backend.Controllers
 {
@@ -232,6 +233,34 @@ namespace dnd_buddy_backend.Controllers
             }
 
             return Ok();
+        }
+
+        //api/Games/state/<gameId>
+        [HttpGet("state/{gameId}")]
+        public async Task<IActionResult> GetGameState([FromRoute] int gameId)
+        {
+            Game _game = _context.Game.SingleOrDefault(x => x.GameId == gameId);
+
+            if (_game == null) //If the game name isn't found, return error
+            {
+                ModelState.AddModelError("Error", "No game found");
+                return BadRequest(ModelState);
+            }
+            else if (_game.GameState == null) //If the game state hasn't been saved yet, return error
+            {
+                ModelState.AddModelError("Error", "No game save found");
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                return Ok(_game.GameState.ToCharArray());
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("Error", "Error reading save");
+                return BadRequest(ModelState);
+            }
         }
 
 

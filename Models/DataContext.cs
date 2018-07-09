@@ -129,6 +129,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("userId")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.GameState)
+                    .HasColumnName("gameState")
+                    .HasColumnType("varchar(2000)");
+
                 entity.HasOne(d => d.User)
                     .WithMany(g => g.Game)
                     .OnDelete(DeleteBehavior.Restrict)

@@ -15,6 +15,7 @@ namespace dnd_buddy_backend.Models
         public int GameId { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
+        public string GameState { get; set; }
 
         public virtual ICollection<Character> Character { get; set; }
         public virtual User User { get; set; }
