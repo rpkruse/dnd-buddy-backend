@@ -239,14 +239,14 @@ namespace dnd_buddy_backend.Controllers
         [HttpGet("state/{gameId}")]
         public async Task<IActionResult> GetGameState([FromRoute] int gameId)
         {
-            Game _game = _context.Game.SingleOrDefault(x => x.GameId == gameId);
+            Game game = _context.Game.SingleOrDefault(x => x.GameId == gameId);
 
-            if (_game == null) //If the game name isn't found, return error
+            if (game == null) //If the game name isn't found, return error
             {
                 ModelState.AddModelError("Error", "No game found");
                 return BadRequest(ModelState);
             }
-            else if (_game.GameState == null) //If the game state hasn't been saved yet, return error
+            else if (game.GameState == null) //If the game state hasn't been saved yet, return error
             {
                 ModelState.AddModelError("Error", "No game save found");
                 return BadRequest(ModelState);
@@ -254,7 +254,7 @@ namespace dnd_buddy_backend.Controllers
 
             try
             {
-                return Ok(_game.GameState.ToCharArray());
+                return Ok(game.GameState);
             }
             catch(Exception ex)
             {
