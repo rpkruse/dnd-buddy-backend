@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 using dnd_buddy_backend.Models;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dnd_buddy_backend.Controllers
 {
@@ -21,12 +22,14 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //GET: api/Games
+        [Authorize]
         public IEnumerable<Game> GetGame()
         {
             return _context.Game;
         }
 
         //Get: api/Games/1
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGame([FromRoute] int id)
         {
@@ -46,6 +49,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Games/detials/2
+        [Authorize]
         [HttpGet("details/{id}")]
         public async Task<IActionResult> GetGameDetails([FromRoute] int id)
         {
@@ -72,6 +76,7 @@ namespace dnd_buddy_backend.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUsersGame([FromRoute] int userId)
         {
@@ -111,6 +116,7 @@ namespace dnd_buddy_backend.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("open/{userId}")]
         public async Task<IActionResult> GetGamesNotCurrentlyIn([FromRoute] int userId)
         {
@@ -130,6 +136,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/gm/
+        [Authorize]
         [HttpGet("gm/{userId}")]
         public async Task<IActionResult> GetGMGames([FromRoute] int userId)
         {
@@ -150,6 +157,7 @@ namespace dnd_buddy_backend.Controllers
 
 
         //PUT: api/Games/1
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGame([FromRoute] int id, [FromBody] Game game)
         {
@@ -185,6 +193,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //POST: api/Games
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> PostGame([FromBody] Game game)
         {
@@ -200,6 +209,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Games/4
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGame([FromRoute] int id)
         {
@@ -221,6 +231,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Games/check/<gamename>
+        [Authorize]
         [HttpGet("check/{gamename}")]
         public async Task<IActionResult> CheckForGameName([FromRoute] string gamename)
         {
@@ -236,6 +247,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Games/state/<gameId>
+        [Authorize]
         [HttpGet("state/{gameId}")]
         public async Task<IActionResult> GetGameState([FromRoute] int gameId)
         {

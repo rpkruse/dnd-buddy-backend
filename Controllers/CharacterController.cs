@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using dnd_buddy_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dnd_buddy_backend.Controllers
 {
@@ -20,12 +21,14 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //GET: api/Games
+        [Authorize]
         public IEnumerable<Character> GetCharacter()
         {
             return _context.Character;
         }
 
         //Get: api/Characters/1
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCharacter([FromRoute] int id)
         {
@@ -45,6 +48,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Characters/user/1
+        [Authorize]
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUsersCharacter([FromRoute] int userId)
         {
@@ -64,6 +68,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //PUT: api/Characters/1
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCharacter([FromRoute] int id, [FromBody] Character character)
         {
@@ -99,6 +104,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //POST: api/Characters
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> PostCharacter([FromBody] Character character)
         {
@@ -114,6 +120,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Characters/4
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter([FromRoute] int id)
         {

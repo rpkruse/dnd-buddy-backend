@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using dnd_buddy_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dnd_buddy_backend.Controllers
 {
@@ -19,6 +20,7 @@ namespace dnd_buddy_backend.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetUser()
         {
@@ -27,6 +29,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //GET: api/Users/1
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser([FromRoute] int id)
         {
@@ -47,6 +50,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //PUT: api/Users/2
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser([FromRoute] int id, [FromBody] User user) //Maybe change to patch?
         {
@@ -113,6 +117,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Users/1
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
@@ -134,6 +139,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Users/Check/<username>
+        [Authorize]
         [HttpGet("check/{username}")]
         public async Task<IActionResult> CheckForUsername([FromRoute] string username)
         {
