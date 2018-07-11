@@ -85,10 +85,13 @@ namespace dnd_buddy_backend.Controllers
             string authId = HttpContext.User.Claims.First().Value;
             User _user = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
 
-            if (_user != null && _user.UserId != character.UserId)
+            Game game = _context.Game.SingleOrDefault(g => g.GameId == character.GameId);
+
+            if (_user != null && game != null && (_user.UserId != character.UserId && _user.UserId != game.UserId))
             {
                 return Unauthorized();
             }
+
 
             _context.Entry(character).State = EntityState.Modified;
 
