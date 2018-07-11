@@ -45,6 +45,14 @@ namespace dnd_buddy_backend.Controllers
                 return NotFound();
             }
 
+            string authId = HttpContext.User.Claims.First().Value;
+            User _authUser = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
+
+            if (_authUser != null && _authUser.UserId != user.UserId)
+            {
+                return Unauthorized();
+            }
+
             user.Password = null;
             return Ok(user);
         }
@@ -63,7 +71,15 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest();
             }
 
-            if(user.Username == null || user.Username.Length <= 0)
+            string authId = HttpContext.User.Claims.First().Value;
+            User _authUser = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
+
+            if (_authUser != null && _authUser.UserId != user.UserId)
+            {
+                return Unauthorized();
+            }
+
+            if (user.Username == null || user.Username.Length <= 0)
             {
                 user.Username = _context.User.AsNoTracking().SingleOrDefault(m => m.UserId == id).Username;
             }
@@ -132,6 +148,14 @@ namespace dnd_buddy_backend.Controllers
                 return NotFound();
             }
 
+            string authId = HttpContext.User.Claims.First().Value;
+            User _user = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
+
+            if (_user != null && _user.UserId != user.UserId)
+            {
+                return Unauthorized();
+            }
+
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
 
@@ -139,7 +163,6 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Users/Check/<username>
-        [Authorize]
         [HttpGet("check/{username}")]
         public async Task<IActionResult> CheckForUsername([FromRoute] string username)
         {

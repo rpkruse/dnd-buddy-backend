@@ -171,6 +171,14 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest();
             }
 
+            string authId = HttpContext.User.Claims.First().Value;
+            User _authUser = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
+
+            if (_authUser != null && _authUser.UserId != game.UserId)
+            {
+                return Unauthorized();
+            }
+
             _context.Entry(game).State = EntityState.Modified;
 
             try
@@ -202,6 +210,14 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest(ModelState);
             }
 
+            string authId = HttpContext.User.Claims.First().Value;
+            User _authUser = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
+
+            if (_authUser != null && _authUser.UserId != game.UserId)
+            {
+                return Unauthorized();
+            }
+
             _context.Game.Add(game);
             await _context.SaveChangesAsync();
 
@@ -222,6 +238,14 @@ namespace dnd_buddy_backend.Controllers
             if(game == null)
             {
                 return NotFound();
+            }
+
+            string authId = HttpContext.User.Claims.First().Value;
+            User _authUser = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
+
+            if (_authUser != null && _authUser.UserId != game.UserId)
+            {
+                return Unauthorized();
             }
 
             _context.Game.Remove(game);
