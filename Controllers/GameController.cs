@@ -112,7 +112,7 @@ namespace dnd_buddy_backend.Controllers
 
         //Get: api/Games/open/1
         /// <summary>
-        /// Games that the user can join (IE are not the DM for)
+        /// Games that the user can join (games they are not the DM AND aren't in)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -125,14 +125,21 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var games = await _context.Game.Where(m => m.UserId != userId).AsNoTracking().ToListAsync();
+            var notGMGames = await _context.Game.Where(m => m.UserId != userId).AsNoTracking().ToListAsync(); //Get all games we do not own
 
-            if (games == null)
+            var characters = await _context.Character.Where(m => m.UserId == userId).AsNoTracking().ToListAsync(); //Get all of our characters
+
+
+            notGMGames.RemoveAll(g => characters.Exists(c => c.GameId == g.GameId)); //Remove any game that we are currently in
+
+
+            if (notGMGames == null)
             {
                 return NotFound();
             }
 
-            return Ok(games);
+
+            return Ok(notGMGames);
         }
 
         //Get: api/gm/
