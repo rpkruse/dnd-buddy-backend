@@ -23,6 +23,7 @@ namespace dnd_buddy_backend.Hubs
         {
             userMessageData.ID = Context.ConnectionId;
             await Groups.AddAsync(Context.ConnectionId, userMessageData.GroupName);
+            await Clients.Client(userMessageData.ID).SendAsync("sendConnectionNoticeToSelf", userMessageData);
             await Clients.OthersInGroup(userMessageData.GroupName).SendAsync("sendConnectionNoticeToGroup", userMessageData);
         }
 
@@ -52,6 +53,16 @@ namespace dnd_buddy_backend.Hubs
         public async Task SendGridPlacement(GridMessageData gridMessageData)
         {
             await Clients.OthersInGroup(gridMessageData.GroupName).SendAsync("sendGridUpdateToGroup", gridMessageData);
+        }
+
+        public async Task SendGroupMessage(ChatMessageData chatMessageData)
+        {
+            await Clients.OthersInGroup(chatMessageData.GroupName).SendAsync("sendChatMessageToGroup", chatMessageData);
+        }
+
+        public async Task SendPrivateMessage(ChatMessageData chatMessageData) //Group name will be a username
+        {
+            await Clients.Client(chatMessageData.ConnectionID).SendAsync("sendChatMessageToGroup", chatMessageData);
         }
     }
 }
