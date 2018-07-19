@@ -10,6 +10,7 @@ namespace dnd_buddy_backend.Models
     {
         public virtual DbSet<Character> Character { get; set; }
         public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
@@ -137,6 +138,38 @@ namespace dnd_buddy_backend.Models
                     .WithMany(g => g.Game)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("f_uid");
+            });
+            modelBuilder.Entity<Item>(entity =>
+            {
+                entity.ToTable("item");
+
+                entity.HasIndex(e => e.ItemId)
+                    .HasName("id")
+                    .IsUnique();
+
+                entity.Property(e => e.ItemId)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(45)");
+
+                entity.Property(e => e.Url)
+                    .HasColumnName("url")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Count)
+                    .HasColumnName("count")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CharacterId)
+                    .HasColumnName("characterId")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(e => e.Character)
+                    .WithMany(i => i.Item)
+                    .HasConstraintName("c_uid");
             });
             modelBuilder.Entity<User>(entity =>
             {

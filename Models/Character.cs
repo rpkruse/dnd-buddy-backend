@@ -9,7 +9,7 @@ namespace dnd_buddy_backend.Models
     {
         public Character()
         {
-
+            Item = new HashSet<Item>();
         }
 
         public int CharacterId { get; set; }
@@ -40,5 +40,7 @@ namespace dnd_buddy_backend.Models
 
         public virtual User User { get; set; }
         public virtual Game Game { get; set; }
+        public virtual ICollection<Item> Item { get; set; }
+
     }
 }
