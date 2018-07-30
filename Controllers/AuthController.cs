@@ -50,6 +50,10 @@ namespace dnd_buddy_backend.Models
                 });
         }
 
+        /// <summary>
+        /// Returns a user if their auth. token is valid
+        /// </summary>
+        /// <returns>A validated user object</returns>
         [Authorize]
         [HttpGet("authUser")]
         public IActionResult Get()
@@ -62,6 +66,11 @@ namespace dnd_buddy_backend.Models
             return Ok(_user);
         }
 
+        /// <summary>
+        /// Checks the login values of a user and returns an auth token if valid
+        /// </summary>
+        /// <param name="user">The login cred. of a user (username/password)</param>
+        /// <returns>An auth token</returns>
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginUser user)
         {

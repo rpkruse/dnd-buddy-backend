@@ -20,14 +20,24 @@ namespace dnd_buddy_backend.Controllers
             _context = context;
         }
 
-        //GET: api/Games
+        //GET: api/Characters
+        /// <summary>
+        /// Gets a list of characters
+        /// </summary>
+        /// <returns>A list of characters</returns>
         [Authorize]
+        [HttpGet("")]
         public IEnumerable<Character> GetCharacter()
         {
             return _context.Character;
         }
 
         //Get: api/Characters/1
+        /// <summary>
+        /// Gets a specific user
+        /// </summary>
+        /// <param name="id">The id of the user to get</param>
+        /// <returns>A specific user</returns>
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCharacter([FromRoute] int id)
@@ -48,6 +58,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Characters/user/1
+        /// <summary>
+        /// Gets a list of characters owned by a given user
+        /// </summary>
+        /// <param name="userId">The id of the user</param>
+        /// <returns>A list of characters owned by a given user</returns>
         [Authorize]
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUsersCharacter([FromRoute] int userId)
@@ -68,6 +83,12 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //PUT: api/Characters/1
+        /// <summary>
+        /// Updates a given character
+        /// </summary>
+        /// <param name="id">The id of the character</param>
+        /// <param name="character">The updated character object</param>
+        /// <returns>None</returns>
         [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCharacter([FromRoute] int id, [FromBody] Character character)
@@ -115,6 +136,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //POST: api/Characters
+        /// <summary>
+        /// Adds a new character to the database
+        /// </summary>
+        /// <param name="character">The new character to add</param>
+        /// <returns>A new character object</returns>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> PostCharacter([FromBody] Character character)
@@ -139,6 +165,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Characters/4
+        /// <summary>
+        /// Removes a specific character from the database
+        /// </summary>
+        /// <param name="id">The id of the character to remove</param>
+        /// <returns>The deleted character</returns>
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter([FromRoute] int id)

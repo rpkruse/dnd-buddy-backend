@@ -12,6 +12,10 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using dnd_buddy_backend.Hubs;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace dnd_buddy_backend
 {
@@ -78,6 +82,25 @@ namespace dnd_buddy_backend
                 .AddJsonOptions(
                     options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme {
+                    In = "header",
+                    Description = "Please enter JWT with Bearer into field (IE: Bearer <Auth Token here>)",
+                    Name = "Authorization",
+                    Type = "apiKey",
+                });
+
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
+                    { "Bearer", Enumerable.Empty<string>() },
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -98,6 +121,16 @@ namespace dnd_buddy_backend
             });
 
             app.UseMvc();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("./v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
+
         }
     }
 }

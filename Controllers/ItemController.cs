@@ -21,13 +21,23 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //GET: api/Items
+        /// <summary>
+        /// Gets all items
+        /// </summary>
+        /// <returns>All items</returns>
         [Authorize]
+        [HttpGet("")]
         public IEnumerable<Item> GetItem()
         {
             return _context.Item;
         }
 
         //Get: api/Items/1
+        /// <summary>
+        /// Gets a specific item
+        /// </summary>
+        /// <param name="id">The id of the item to get</param>
+        /// <returns>A specific item</returns>
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItem([FromRoute] int id)
@@ -48,6 +58,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Items/character/1
+        /// <summary>
+        /// Gets all items for a specific character
+        /// </summary>
+        /// <param name="id">The id of the character</param>
+        /// <returns>All items for a specific user</returns>
         [Authorize]
         [HttpGet("character/{id}")]
         public async Task<IActionResult> GetCharacterItem([FromRoute] int id)
@@ -69,6 +84,12 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //PUT: api/Items/1
+        /// <summary>
+        /// Updates an item
+        /// </summary>
+        /// <param name="id">The id of the item to update</param>
+        /// <param name="item">The updated item object</param>
+        /// <returns>None</returns>
         [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutItem([FromRoute] int id, [FromBody] Item item)
@@ -110,6 +131,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //POST: api/Items
+        /// <summary>
+        /// Adds a new item to the database
+        /// </summary>
+        /// <param name="item">A new item object</param>
+        /// <returns>The added item</returns>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> PostItem([FromBody] Item item)
@@ -131,6 +157,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Items/4
+        /// <summary>
+        /// Removes a specific item from the database
+        /// </summary>
+        /// <param name="id">The id of the item to remove</param>
+        /// <returns>The removed item</returns>
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem([FromRoute] int id)

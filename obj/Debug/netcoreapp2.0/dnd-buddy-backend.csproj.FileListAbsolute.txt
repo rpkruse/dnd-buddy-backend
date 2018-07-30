@@ -20,3 +20,5 @@ C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-b
 C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.dll
 C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.pdb
 C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.csprojAssemblyReference.cache
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\bin\Debug\netcoreapp2.0\dnd-buddy-backend.xml
+C:\Users\rkruse\Documents\GitHub\dnd-buddy-backend\obj\Debug\netcoreapp2.0\dnd-buddy-backend.xml

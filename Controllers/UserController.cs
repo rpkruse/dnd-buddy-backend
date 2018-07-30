@@ -20,15 +20,23 @@ namespace dnd_buddy_backend.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Gets a list of all users
+        /// </summary>
+        /// <returns>All users</returns>
         [Authorize]
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetUser()
         {
             return Unauthorized(); //Don't allow anyone to pull all of users
             //return _context.User;
         }
 
-        //GET: api/Users/1
+        /// <summary>
+        /// Returns a specific user
+        /// </summary>
+        /// <param name="id">The ID of the user</param>
+        /// <returns>A specific user</returns>
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser([FromRoute] int id)
@@ -58,6 +66,12 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //PUT: api/Users/2
+        /// <summary>
+        /// Updates a user
+        /// </summary>
+        /// <param name="id">The id of the user to update</param>
+        /// <param name="user">The updated user object</param>
+        /// <returns>An updated user</returns>
         [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser([FromRoute] int id, [FromBody] User user) //Maybe change to patch?
@@ -109,6 +123,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //POST: api/Users
+        /// <summary>
+        /// Adds a user to the database
+        /// </summary>
+        /// <param name="user">The user object</param>
+        /// <returns>The new user</returns>
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] User user)
         {
@@ -133,6 +152,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Users/1
+        /// <summary>
+        /// Removes a user from the database
+        /// </summary>
+        /// <param name="id">The ID of the user to remove</param>
+        /// <returns>The deleted user</returns>
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
@@ -163,6 +187,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Users/Check/<username>
+        /// <summary>
+        /// Validates if the given username is taken or not
+        /// </summary>
+        /// <param name="username">The username to check</param>
+        /// <returns>Ok if not taken, error if taken</returns>
         [HttpGet("check/{username}")]
         public async Task<IActionResult> CheckForUsername([FromRoute] string username)
         {

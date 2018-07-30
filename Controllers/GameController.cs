@@ -22,13 +22,23 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //GET: api/Games
+        /// <summary>
+        /// Returns all games
+        /// </summary>
+        /// <returns>All games</returns>
         [Authorize]
+        [HttpGet("")]
         public IEnumerable<Game> GetGame()
         {
             return _context.Game;
         }
 
         //Get: api/Games/1
+        /// <summary>
+        /// Gets a specific game
+        /// </summary>
+        /// <param name="id">The id of the game to get</param>
+        /// <returns>A specific game</returns>
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGame([FromRoute] int id)
@@ -49,6 +59,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Games/detials/2
+        /// <summary>
+        /// Gets a specific game with all the characters
+        /// </summary>
+        /// <param name="id">The id of the game to get</param>
+        /// <returns>A specific game with character details</returns>
         [Authorize]
         [HttpGet("details/{id}")]
         public async Task<IActionResult> GetGameDetails([FromRoute] int id)
@@ -72,10 +87,10 @@ namespace dnd_buddy_backend.Controllers
 
         //Get: api/Games/user/1
         /// <summary>
-        /// Games that the user is in or the DM of
+        /// Gets a list of games that the user is in or owns
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">The ID of the user</param>
+        /// <returns>A list of games that the user owns/is in</returns>
         [Authorize]
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUsersGame([FromRoute] int userId)
@@ -112,10 +127,10 @@ namespace dnd_buddy_backend.Controllers
 
         //Get: api/Games/open/1
         /// <summary>
-        /// Games that the user can join (games they are not the DM AND aren't in)
+        /// Gets a list of games the user currently isn't in
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">A user id</param>
+        /// <returns>A list of games the user isn't in</returns>
         [Authorize]
         [HttpGet("open/{userId}")]
         public async Task<IActionResult> GetGamesNotCurrentlyIn([FromRoute] int userId)
@@ -143,6 +158,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/gm/
+        /// <summary>
+        /// Gets a list of games that the user is a DM for
+        /// </summary>
+        /// <param name="userId">A user ID</param>
+        /// <returns>A list of games that the user is the DM of</returns>
         [Authorize]
         [HttpGet("gm/{userId}")]
         public async Task<IActionResult> GetGMGames([FromRoute] int userId)
@@ -164,6 +184,12 @@ namespace dnd_buddy_backend.Controllers
 
 
         //PUT: api/Games/1
+        /// <summary>
+        /// Updates a specific game
+        /// </summary>
+        /// <param name="id">The id of the game</param>
+        /// <param name="game">The updated game object</param>
+        /// <returns>None</returns>
         [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGame([FromRoute] int id, [FromBody] Game game)
@@ -208,6 +234,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //POST: api/Games
+        /// <summary>
+        /// Adds a game to the database
+        /// </summary>
+        /// <param name="game">The game object to add</param>
+        /// <returns>The added game object</returns>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> PostGame([FromBody] Game game)
@@ -232,6 +263,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //DELETE: api/Games/4
+        /// <summary>
+        /// Removes a game from the database
+        /// </summary>
+        /// <param name="id">The id of the game to remove</param>
+        /// <returns>The removed game</returns>
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGame([FromRoute] int id)
@@ -262,6 +298,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Games/check/<gamename>
+        /// <summary>
+        /// Checks if a game name is already in use
+        /// </summary>
+        /// <param name="gamename">The name of the game</param>
+        /// <returns>Ok if not taken, Error if taken</returns>
         [Authorize]
         [HttpGet("check/{gamename}")]
         public async Task<IActionResult> CheckForGameName([FromRoute] string gamename)
@@ -278,6 +319,11 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //api/Games/state/<gameId>
+        /// <summary>
+        /// Returns a specific game's board (state)
+        /// </summary>
+        /// <param name="gameId">The id of the game to get</param>
+        /// <returns>The state of the game</returns>
         [Authorize]
         [HttpGet("state/{gameId}")]
         public async Task<IActionResult> GetGameState([FromRoute] int gameId)
