@@ -16,6 +16,7 @@ namespace dnd_buddy_backend.Models
         public string Name { get; set; }
         public string Url { get; set; }
         public int Count { get; set; }
+        public bool CanEquip { get; set; }
         public int CharacterId { get; set; }
 
         public virtual Character Character { get; set; }

@@ -163,6 +163,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("count")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.CanEquip)
+                    .HasColumnName("canEquip")
+                    .HasColumnType("tinyint(1)");
+
                 entity.Property(e => e.CharacterId)
                     .HasColumnName("characterId")
                     .HasColumnType("int(11)");
