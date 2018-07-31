@@ -34,6 +34,8 @@ namespace dnd_buddy_backend.Models
         public string Ring_1 { get; set; }
         public string Ring_2 { get; set; }
 
+        public int Xp { get; set; }
+
         public int UserId { get; set; }
 
         public int GameId { get; set; }
