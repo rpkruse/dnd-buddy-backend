@@ -65,6 +65,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("abil_score_cha")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Profs)
+                    .HasColumnName("profs")
+                    .HasColumnType("varchar(100)");
+
                 entity.Property(e => e.Level)
                     .HasColumnName("level")
                     .HasColumnType("int(11)");

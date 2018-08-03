@@ -25,6 +25,8 @@ namespace dnd_buddy_backend.Models
         public int Abil_Score_Wis { get; set; }
         public int Abil_Score_Cha { get; set; }
 
+        public string Profs { get; set; }
+
         public int Level { get; set; }
 
         public string Armor { get; set; }
