@@ -10,6 +10,7 @@ namespace dnd_buddy_backend.Models
         public Game()
         {
             Character = new HashSet<Character>();
+            Monster = new HashSet<Monster>();
         }
 
         public int GameId { get; set; }
@@ -18,6 +19,7 @@ namespace dnd_buddy_backend.Models
         public string GameState { get; set; }
 
         public virtual ICollection<Character> Character { get; set; }
+        public virtual ICollection<Monster> Monster { get; set; }
         public virtual User User { get; set; }
     }
 }
