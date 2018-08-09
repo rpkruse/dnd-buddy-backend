@@ -12,6 +12,8 @@ namespace dnd_buddy_backend.Models
         }
         public int MonsterId { get; set; }
 
+        public string Name { get; set; }
+
         public int Max_HP { get; set; }
         public int HP { get; set; }
 

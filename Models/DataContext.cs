@@ -204,6 +204,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(100)");
+
                 entity.Property(e => e.Max_HP)
                     .HasColumnName("max_hp")
                     .HasColumnType("int(11)");
