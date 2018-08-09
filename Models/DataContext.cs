@@ -11,6 +11,7 @@ namespace dnd_buddy_backend.Models
         public virtual DbSet<Character> Character { get; set; }
         public virtual DbSet<Game> Game { get; set; }
         public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<Monster> Monster { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
@@ -190,6 +191,40 @@ namespace dnd_buddy_backend.Models
                 entity.HasOne(e => e.Character)
                     .WithMany(i => i.Item)
                     .HasConstraintName("c_uid");
+            });
+            modelBuilder.Entity<Monster>(entity =>
+            {
+                entity.ToTable("monster");
+
+                entity.HasIndex(e => e.MonsterId)
+                    .HasName("id")
+                    .IsUnique();
+
+                entity.Property(e => e.MonsterId)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Max_HP)
+                    .HasColumnName("max_hp")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.HP)
+                    .HasColumnName("hp")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.GameId)
+                    .HasColumnName("gameId")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Url)
+                    .HasColumnName("url")
+                    .HasColumnType("varchar(100)");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(g => g.Monster)
+                    .HasForeignKey(d => d.GameId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("f_mtgid");
             });
             modelBuilder.Entity<User>(entity =>
             {
