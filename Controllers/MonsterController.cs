@@ -152,7 +152,14 @@ namespace dnd_buddy_backend.Controllers
             string authId = HttpContext.User.Claims.First().Value;
             User _user = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
 
-            if (_user != null && !this.isProperUser(_user, monster.MonsterId))
+            if (_user == null)
+            {
+                return Unauthorized();
+            }
+
+            Game game = _context.Game.SingleOrDefault(g => g.UserId == _user.UserId);
+
+            if (game == null)
             {
                 return Unauthorized();
             }
