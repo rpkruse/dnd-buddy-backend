@@ -65,7 +65,7 @@ namespace dnd_buddy_backend.Controllers
         /// <returns>A list of Monsters in a given game</returns>
         [Authorize]
         [HttpGet("game/{gameId}")]
-        public async Task<IActionResult> GetUsersCharacter([FromRoute] int gameId)
+        public async Task<IActionResult> GetMonstersInGame([FromRoute] int gameId)
         {
             if (!ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace dnd_buddy_backend.Controllers
         /// <returns>None</returns>
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter([FromRoute] int id, [FromBody] Monster monster)
+        public async Task<IActionResult> PutMonster([FromRoute] int id, [FromBody] Monster monster)
         {
             if (!ModelState.IsValid)
             {
@@ -142,7 +142,7 @@ namespace dnd_buddy_backend.Controllers
         /// <returns>A new character object</returns>
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> PostCharacter([FromBody] Monster monster)
+        public async Task<IActionResult> PostMonster([FromBody] Monster monster)
         {
             if (!ModelState.IsValid)
             {
@@ -157,9 +157,14 @@ namespace dnd_buddy_backend.Controllers
                 return Unauthorized();
             }
 
-            Game game = _context.Game.SingleOrDefault(g => g.UserId == _user.UserId);
+            Game game = _context.Game.SingleOrDefault(g => g.GameId == monster.GameId);
 
             if (game == null)
+            {
+                return Unauthorized();
+            }
+
+            if (game.UserId != _user.UserId)
             {
                 return Unauthorized();
             }
