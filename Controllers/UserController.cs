@@ -85,14 +85,6 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest();
             }
 
-            string authId = HttpContext.User.Claims.First().Value;
-            User _authUser = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
-
-            if (_authUser != null && _authUser.UserId != user.UserId)
-            {
-                return Unauthorized();
-            }
-
             if (user.Username == null || user.Username.Length <= 0)
             {
                 user.Username = _context.User.AsNoTracking().SingleOrDefault(m => m.UserId == id).Username;
@@ -166,24 +158,31 @@ namespace dnd_buddy_backend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.User.SingleOrDefaultAsync(m => m.UserId == id);
+            /*var user = await _context.User.SingleOrDefaultAsync(m => m.UserId == id);
             if(user == null)
             {
                 return NotFound();
-            }
+            }*/
 
             string authId = HttpContext.User.Claims.First().Value;
             User _user = _context.User.SingleOrDefault(u => u.UserId.ToString() == authId);
 
-            if (_user != null && _user.UserId != user.UserId)
+            if (_user == null)
             {
-                return Unauthorized();
+                return NotFound();
             }
 
-            _context.User.Remove(user);
+            var characters = await _context.Character.Where(m => m.UserId == _user.UserId).AsNoTracking().ToListAsync();
+
+            foreach(Character c in characters)
+            {
+                _context.Character.Remove(c);
+            }
+
+            _context.User.Remove(_user);
             await _context.SaveChangesAsync();
 
-            return Ok(user);
+            return Ok(_user);
         }
 
         //api/Users/Check/<username>
