@@ -147,6 +147,8 @@ namespace dnd_buddy_backend.Controllers
 
             notGMGames.RemoveAll(g => characters.Exists(c => c.GameId == g.GameId)); //Remove any game that we are currently in
 
+            notGMGames.RemoveAll(g => !g.Open); //Remove all games that are not open
+
 
             if (notGMGames == null)
             {

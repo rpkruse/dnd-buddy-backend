@@ -151,6 +151,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("gameState")
                     .HasColumnType("varchar(2000)");
 
+                entity.Property(e => e.Open)
+                    .HasColumnName("open")
+                    .HasColumnType("tinyint(1)");
+
                 entity.HasOne(d => d.User)
                     .WithMany(g => g.Game)
                     .OnDelete(DeleteBehavior.Restrict)
