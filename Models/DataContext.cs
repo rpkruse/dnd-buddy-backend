@@ -38,6 +38,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("class")
                     .HasColumnType("varchar(100)");
 
+                entity.Property(e => e.Subclass)
+                    .HasColumnName("subclass")
+                    .HasColumnType("varchar(45)");
+
                 entity.Property(e => e.Race)
                     .HasColumnName("race")
                     .HasColumnType("varchar(100)");

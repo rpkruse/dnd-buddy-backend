@@ -16,6 +16,7 @@ namespace dnd_buddy_backend.Models
 
         public string Name { get; set; }
         public string Class { get; set; }
+        public string Subclass { get; set; }
         public string Race { get; set; }
 
         public int Abil_Score_Str { get; set; }
