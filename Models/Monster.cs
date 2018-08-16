@@ -17,6 +17,8 @@ namespace dnd_buddy_backend.Models
         public int Max_HP { get; set; }
         public int HP { get; set; }
 
+        public float CR { get; set; }
+
         public int GameId { get; set; }
 
         public string Url { get; set; }
