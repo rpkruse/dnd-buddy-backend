@@ -116,7 +116,7 @@ namespace dnd_buddy_backend.Models
 
                 entity.Property(e => e.Gp)
                      .HasColumnName("gp")
-                     .HasColumnType("float")
+                     .HasColumnType("decimal(11, 4)")
                      .HasDefaultValue(0);
 
                 entity.Property(e => e.UserId)
