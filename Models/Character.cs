@@ -42,6 +42,8 @@ namespace dnd_buddy_backend.Models
 
         public int Xp { get; set; }
 
+        public float Gp { get; set; }
+
         public int UserId { get; set; }
 
         public int GameId { get; set; }

@@ -114,6 +114,11 @@ namespace dnd_buddy_backend.Models
                      .HasColumnName("xp")
                      .HasColumnType("int(11)");
 
+                entity.Property(e => e.Gp)
+                     .HasColumnName("gp")
+                     .HasColumnType("float")
+                     .HasDefaultValue(0);
+
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
                     .HasColumnType("int(11)");
