@@ -16,6 +16,7 @@ namespace dnd_buddy_backend.Models
         public string Name { get; set; }
         public string Url { get; set; }
         public int Count { get; set; }
+        public string Magic_Type { get; set; }
         public int Cost { get; set; }
         public string Cost_Type { get; set; }
         public bool CanEquip { get; set; }

@@ -193,6 +193,10 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("count")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Magic_Type)
+                    .HasColumnName("magic_type")
+                    .HasColumnType("varchar(45)");
+
                 entity.Property(e => e.Cost)
                     .HasColumnName("cost")
                     .HasColumnType("INT(11)");
