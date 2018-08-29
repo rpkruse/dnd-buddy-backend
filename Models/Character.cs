@@ -37,6 +37,11 @@ namespace dnd_buddy_backend.Models
         public string Weapon { get; set; }
         public string Shield { get; set; }
         public string Neck { get; set; }
+        public string Belt { get; set; }
+        public string Boots { get; set; }
+        public string Cloak { get; set; }
+        public string Gloves { get; set; }
+        public string Helm { get; set; }
         public string Ring_1 { get; set; }
         public string Ring_2 { get; set; }
 

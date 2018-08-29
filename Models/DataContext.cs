@@ -102,6 +102,26 @@ namespace dnd_buddy_backend.Models
                     .HasColumnName("neck")
                     .HasColumnType("varchar(100)");
 
+                entity.Property(e => e.Belt)
+                    .HasColumnName("belt")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Boots)
+                    .HasColumnName("boots")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Cloak)
+                    .HasColumnName("cloak")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Gloves)
+                    .HasColumnName("gloves")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Helm)
+                    .HasColumnName("helm")
+                    .HasColumnType("varchar(100)");
+
                 entity.Property(e => e.Ring_1)
                     .HasColumnName("ring_1")
                     .HasColumnType("varchar(100)");
