@@ -10,6 +10,7 @@ namespace dnd_buddy_backend.Models
     {
         public virtual DbSet<Character> Character { get; set; }
         public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<Grid> Grid { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<Monster> Monster { get; set; }
         public virtual DbSet<User> User { get; set; }
@@ -188,6 +189,25 @@ namespace dnd_buddy_backend.Models
                     .WithMany(g => g.Game)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("f_uid");
+            });
+            modelBuilder.Entity<Grid>(entity =>
+            {
+                entity.ToTable("grid");
+
+                entity.HasIndex(e => e.GridId)
+                    .HasName("id");
+
+                entity.Property(e => e.GridId)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(45)");
+
+                entity.Property(e => e.GridData)
+                    .HasColumnName("grid_data")
+                    .HasColumnType("LONGTEXT");
             });
             modelBuilder.Entity<Item>(entity =>
             {
