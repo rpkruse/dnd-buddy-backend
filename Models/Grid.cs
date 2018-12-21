@@ -10,5 +10,6 @@ namespace dnd_buddy_backend.Models
         public int GridId { get; set; }
         public string Name { get; set; }
         public string GridData { get; set; }
+        public bool Active { get; set; }
     }
 }

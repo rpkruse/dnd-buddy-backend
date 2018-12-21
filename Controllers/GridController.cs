@@ -35,6 +35,7 @@ namespace dnd_buddy_backend.Controllers
         }
 
         //Get: api/Grid/1
+        //Called only when we want to activate a grid (so deactivate any currently active grid)
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGrid([FromRoute] int id)
         {
@@ -44,6 +45,72 @@ namespace dnd_buddy_backend.Controllers
             }
 
             var grid = await _context.Grid.SingleOrDefaultAsync(m => m.GridId == id);
+
+            if (grid == null)
+            {
+                return NotFound();
+            }
+
+            //Get the last active grid, set it to inactive, update it
+            var oldActiveGrid = await _context.Grid.SingleOrDefaultAsync(m => m.Active == true);
+
+            if (oldActiveGrid != null)
+            {
+                oldActiveGrid.Active = false;
+
+                _context.Entry(oldActiveGrid).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    if (!GridExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            
+            grid.Active = true;
+
+            _context.Entry(grid).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (!GridExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(grid);
+        }
+
+        //Get the currently active grid
+        [HttpGet("active")]
+        public async Task<IActionResult> GetCurrentGrid()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var grid = await _context.Grid.SingleOrDefaultAsync<Grid>(m => m.Active == true);
 
             if (grid == null)
             {

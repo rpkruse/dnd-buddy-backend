@@ -208,6 +208,11 @@ namespace dnd_buddy_backend.Models
                 entity.Property(e => e.GridData)
                     .HasColumnName("grid_data")
                     .HasColumnType("LONGTEXT");
+
+                entity.Property(e => e.Active)
+                    .HasColumnName("active")
+                    .HasColumnType("tinyint(1)")
+                    .HasDefaultValue(0);
             });
             modelBuilder.Entity<Item>(entity =>
             {
